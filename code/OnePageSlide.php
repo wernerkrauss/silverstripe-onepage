@@ -12,7 +12,17 @@ class OnePageSlide extends DataExtension {
 		'BackgroundImage' => 'Image'
 	);
 
+	private static $background_color_palette = array(
+		'#fff' => '#fff',
+		'#444' => '#444',
+		'#000' => '#000'
+	);
+	private static $text_color_palette = array(
+		'#000' => '#000',
+		'#fff' => '#fff'
+	);
 	/**
+	 * @todo: use fieldLabels() for field labels
 	 * @inheritdoc
 	 */
 	public function updateCMSFields(FieldList $fields) {
@@ -25,9 +35,27 @@ class OnePageSlide extends DataExtension {
 			$image->setFolderName($this->owner->getRootFolderName());
 		}
 
+		$backgroundPalette = $this->owner->config()->get('background_color_palette')
+			? $this->owner->config()->get('background_color_palette')
+			: Config::inst()->get($this->class, 'background_color_palette');
+		$backgroundColor = ColorPaletteField::create(
+			'BackgroundColor',
+			'Background Color',
+			$backgroundPalette
+		);
+
+		$textPalette = $this->owner->config()->get('text_color_palette')
+			? $this->owner->config()->get('text_color_palette')
+			: Config::inst()->get($this->class, 'text_color_palette');
+		$textColor = ColorPaletteField::create(
+			'TextColor',
+			'Text Color',
+			$textPalette
+		);
+
 		$fields->addFieldToTab('Root.Layout', $image);
-		$fields->addFieldToTab('Root.Layout', TextField::create('BackgroundColor', 'Background Color'));
-		$fields->addFieldToTab('Root.Layout', TextField::create('TextColor', 'Text Color'));
+		$fields->addFieldToTab('Root.Layout', $backgroundColor);
+		$fields->addFieldToTab('Root.Layout', $textColor);
 		$fields->addFieldToTab('Root.Layout', TextField::create('AdditionalCSSClass', 'CSS Class'));
 
 	}

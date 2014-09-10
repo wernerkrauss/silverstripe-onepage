@@ -1,3 +1,3 @@
 $(function($){
-    $('.img-holder').imageScroll();
+    $.stellar();
 });

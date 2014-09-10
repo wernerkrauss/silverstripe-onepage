@@ -1,6 +1,6 @@
 <% require block('framework/thirdparty/jquery/jquery.js') %>
 <% require javascript('onepage/javascript/jquery-1.11.1.min.js') %>
-<% require javascript('onepage/javascript/parallax-imagescroll/jquery.imageScroll.js') %>
+<% require javascript('onepage/javascript/stellar/jquery.stellar.min.js') %>
 <% require javascript('onepage/javascript/onepage.js') %>
 <% require themedCSS('onepage','onepage') %>
 
@@ -11,7 +11,7 @@
 	</article>
     <% loop $Children %>
         <% if $BackgroundImage %>
-            <div class="img-holder" data-image="$BackgroundImage.URL"
+            <div class="img-holder" data-stellar-background-ratio="0.5"
                     style="background-image:url($BackgroundImage.URL);">
             </div>
         <% end_if %>

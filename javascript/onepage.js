@@ -1,3 +1,5 @@
 $(function($){
-    $.stellar();
+    $.stellar({
+        horizontalScrolling: false
+    });
 });

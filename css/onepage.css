@@ -17,4 +17,10 @@
 
 .onepage .img-holder {
     min-height: 500px;
+    background-attachment: fixed;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
 }

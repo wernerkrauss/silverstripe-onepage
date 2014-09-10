@@ -2,13 +2,12 @@
 
 This module provides a basic skeleton to build one-page sites easily.
 
-By default it uses the [Parallax Image Scroll](https://github.com/pederan/Parallax-ImageScroll) jQuery plugin but every other animation can be used.
+By default it uses the [Stellar.js](http://markdalgleish.com/projects/stellar.js/) jQuery plugin but every other animation can be used in your templates
 
 ##Installation
 
 ###Requirements
   * Silverstripe > 3.1
-  * jQuery version 1.8.0 or higher for Parallax Image Scroll plugin
 
 
 ##Configuration
@@ -17,6 +16,7 @@ By default it uses the [Parallax Image Scroll](https://github.com/pederan/Parall
 
 ##Todo
   * create unit tests
+  * use focuspoint module for background images
 
 ##Licence
 [MIT Licence](LICENSE)

@@ -1,0 +1,30 @@
+{
+	"name": "wernerkrauss/silverstripe-onepage",
+	"description": "An extension for simpe one-page sites",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "extension"],
+	"license": "MIT",
+	"authors": [
+	{
+		"name": "Werner Krauß",
+		"email": "werner.krauss@netwerkstatt.at",
+		"homepage": "http://www.netwerkstatt.at",
+		"role": "Developer"
+	}
+	],
+	"support": {
+		"issues": "https://github.com/wernerkrauss/silverstripe-onepage/issues"
+	},
+	"require": {
+		"silverstripe/framework": "3.*",
+		"silverstripe/cms": "3.*",
+		"composer/installers": "*",
+        "heyday/silverstripe-colorpalette": "dev-master"
+	},
+	"suggest": {
+        "wernerkrauss/folderperpage": "create folders for each page"
+	},
+	"extra": {
+		"installer-name": "onepage"
+	}
+}

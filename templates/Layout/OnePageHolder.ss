@@ -5,7 +5,7 @@
 
 <div class="onepage content-container unit size4of4 lastUnit">
 	<article>
-		<h1>$Title</h1>
+		<h1<% if $HeadingColor %> style="color: $HeadingColor"<% end_if %>>$Title</h1>
 		<div class="content">$Content</div>
 	</article>
     <% loop $Children %>
@@ -15,7 +15,7 @@
             </div>
         <% end_if %>
         <article<% if $OnePageSlideStyle %> style="$OnePageSlideStyle"<% end_if %><% if $AdditionalCSSClass %> class="$AdditionalCSSClass"<% end_if %>>
-            <h2>$Title</h2>
+            <h2<% if $HeadingColor %> style="color: $HeadingColor"<% end_if %>>$Title</h2>
             <div class="content">$Content</div>
         </article>
     <% end_loop %>

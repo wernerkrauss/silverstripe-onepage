@@ -4,6 +4,7 @@ class OnePageSlide extends DataExtension {
 
 	private static $db = array(
 		'BackgroundColor' => 'Varchar',
+		'HeadingColor' => 'Varchar',
 		'TextColor' => 'Varchar',
 		'AdditionalCSSClass' => 'Varchar'
 	);
@@ -16,6 +17,10 @@ class OnePageSlide extends DataExtension {
 		'#fff' => '#fff',
 		'#444' => '#444',
 		'#000' => '#000'
+	);
+	private static $heading_color_palette = array(
+		'#000' => '#000',
+		'#fff' => '#fff'
 	);
 	private static $text_color_palette = array(
 		'#000' => '#000',
@@ -44,6 +49,15 @@ class OnePageSlide extends DataExtension {
 			$backgroundPalette
 		);
 
+		$headingPalette = $this->owner->config()->get('heading_color_palette')
+			? $this->owner->config()->get('heading_color_palette')
+			: Config::inst()->get($this->class, 'heading_color_palette');
+		$headingColor = ColorPaletteField::create(
+			'HeadingColor',
+			'Heading Color',
+			$headingPalette
+		);
+
 		$textPalette = $this->owner->config()->get('text_color_palette')
 			? $this->owner->config()->get('text_color_palette')
 			: Config::inst()->get($this->class, 'text_color_palette');
@@ -55,6 +69,7 @@ class OnePageSlide extends DataExtension {
 
 		$fields->addFieldToTab('Root.Layout', $image);
 		$fields->addFieldToTab('Root.Layout', $backgroundColor);
+		$fields->addFieldToTab('Root.Layout', $headingColor);
 		$fields->addFieldToTab('Root.Layout', $textColor);
 		$fields->addFieldToTab('Root.Layout', TextField::create('AdditionalCSSClass', 'CSS Class'));
 

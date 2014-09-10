@@ -1,0 +1,11 @@
+---
+Name: onepage-extensions
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+# General
+
+Page:
+ extensions:
+    - 'OnePageSlide'

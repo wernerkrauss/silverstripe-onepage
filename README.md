@@ -9,14 +9,17 @@ By default it uses the [Stellar.js](http://markdalgleish.com/projects/stellar.js
 ###Requirements
   * Silverstripe > 3.1
 
-
 ##Configuration
 
 ##Usage
 
 ##Todo
+  * scroll to slide (important!)
+  * redirect slide page to OnePageHolder#Slide
+  * i18n
   * create unit tests
   * use focuspoint module for background images
+  * refactor and improve
 
 ##Licence
 [MIT Licence](LICENSE)

@@ -99,5 +99,24 @@ class OnePageSlide extends DataExtension {
 		return $style;
 
 	}
+
+	/**
+	 * get's fired on ContentController::init()
+	 *
+	 * check if this is a OnePageSlide and redirect to parent...
+	 */
+	public function contentcontrollerInit($controller){
+		if ($this->owner->isOnePageSlide()) {
+			$controller->redirect($this->owner->Parent()->Link('#'.$this->owner->URLSegment), 301);
+		}
+	}
+
+	/**
+	 * Checks, if the current page is a slide of a one-page by checking if the parent page is a OnePageHolder
+	 * @return bool
+	 */
+	public function isOnePageSlide(){
+		return ($this->owner->Parent() instanceof OnePageHolder);
+	}
 }
 

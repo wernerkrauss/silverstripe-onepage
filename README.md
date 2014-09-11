@@ -33,7 +33,7 @@ Page:
 Define a page as page type "One Page Holder" and add some child pages.
 In the tab "Layout" you can add all extra stuff like background image, colors or css-class. That's all!
 
-[OnePage Module CMS screenshot](https://github.com/wernerkrauss/silverstripe-onepage/blob/master/docs/images/onepage-screenshot-cms.jpg)
+![OnePage Module CMS screenshot](https://github.com/wernerkrauss/silverstripe-onepage/blob/master/docs/images/onepage-screenshot-cms.jpg)
 
 ##Todo
   * scroll to slide (important!)

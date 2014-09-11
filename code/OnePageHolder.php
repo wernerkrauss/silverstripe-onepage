@@ -29,13 +29,5 @@ class OnePageHolder extends Page {
 
 class OnePageHolder_Controller extends Page_Controller {
 
-	private static $block_thirdpary_jquery = true;
 
-	public function init(){
-		parent::init();
-		if ($this->config()->get('block_thirdparty_jquery')) {
-//			Requirements::block(THIRDPARTY_DIR . '/jquery/jquery.js');
-//			Requirements::javascript('onepage/javascript/jquery-1.11.1.min.js');
-		}
-	}
 }

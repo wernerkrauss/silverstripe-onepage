@@ -30,11 +30,15 @@ Page:
 ```
 
 ##Usage
+###Basic setup
 Define a page as page type "One Page Holder" and add some child pages.
 In the tab "Layout" you can add all extra stuff like background image, colors or css-class. That's all!
 
 ![OnePage Module CMS screenshot](https://github.com/wernerkrauss/silverstripe-onepage/blob/master/docs/images/onepage-screenshot-cms.jpg)
 
+###Different page types
+You can of course use any page type as a slide. Simply create an own template for inclusion as a slide and add the suffix "_onepage" to it's name. 
+See the included file [Page_onepage.ss](templates/Includes/Page_onepage.ss)
 
 ##Tips
 ###Navigation and scrolling to slides
@@ -69,7 +73,7 @@ $(function($){
 ##Todo
   * --scroll to slide (important!)-- see tip above
   * --redirect slide page to OnePageHolder#Slide--
-  * use separate templates for page types to include as slide
+  * --use separate templates for page types to include as slide--
   * i18n
   * create unit tests
   * use focuspoint module for background images

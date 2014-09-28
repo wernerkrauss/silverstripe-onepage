@@ -127,5 +127,18 @@ class OnePageSlide extends DataExtension {
 	public function isOnePageSlide(){
 		return ($this->owner->Parent() instanceof OnePageHolder);
 	}
+
+	/**
+	 * renders the current page using the ClassName_onepage template,
+	 * e.g. Page_onepage
+	 *
+	 * @return HTMLText
+	 */
+	public function getOnePageContent(){
+		$templateName = SSViewer::get_templates_by_class($this->owner->Classname, '_onepage', 'SiteTree')
+			?: 'Page_onepage';
+
+	    return $this->owner->renderWith($templateName);
+	}
 }
 

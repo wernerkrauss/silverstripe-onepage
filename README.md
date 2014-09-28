@@ -35,9 +35,41 @@ In the tab "Layout" you can add all extra stuff like background image, colors or
 
 ![OnePage Module CMS screenshot](https://github.com/wernerkrauss/silverstripe-onepage/blob/master/docs/images/onepage-screenshot-cms.jpg)
 
+
+##Tips
+###Navigation and scrolling to slides
+Navigaton / scrolling to slides can be done e.g. using the [OnepageNav jQuery plugin](http://github.com/davist11/jQuery-One-Page-Nav) which is not bundled with this module.
+
+A possible javascript for setting it up could be:
+```
+$(function($){
+    //remove pathname from slide links if they are on the current page
+    $.when(
+        $('#MainNavList').find('a').each(function(){
+            if ($(this).prop('pathname') == window.location.pathname) {
+                $(this).prop('href', $(this).prop('hash'));
+            } else {
+                $(this).addClass('external');
+            }
+        })
+    ).done(function(){
+        //initialize onepage nav
+        $('#MainNavList').onePageNav({
+            currentClass: 'current',
+            changeHash: false,
+            scrollSpeed: 750,
+            scrollThreshold: 0.5,
+            filter: ':not(.external)',
+            easing: 'swing'
+        });
+    });
+});
+```
+
 ##Todo
-  * scroll to slide (important!)
-  * redirect slide page to OnePageHolder#Slide
+  * --scroll to slide (important!)-- see tip above
+  * --redirect slide page to OnePageHolder#Slide--
+  * use separate templates for page types to include as slide
   * i18n
   * create unit tests
   * use focuspoint module for background images

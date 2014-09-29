@@ -26,6 +26,24 @@ class OnePageSlide extends DataExtension {
 		'#000' => '#000',
 		'#fff' => '#fff'
 	);
+
+	/**
+	 * @inheritdoc
+	 */
+	public function updateFieldLabels(&$labels)
+	{
+		$labels = parent::updateFieldLabels($labels);
+
+		$labels['Title'] = _t('OnePageSlide.db_Title', 'Title');
+		$labels['BackgroundColor'] = _t('OnePageSlide.db_BackgroundColor', 'Background Color');
+		$labels['HeadingColor'] = _t('OnePageSlide.db_HeadingColor', 'Heading Color');
+		$labels['TextColor'] = _t('OnePageSlide.db_TextColor', 'Text Color');
+		$labels['AdditionalCSSClass'] = _t('OnePageSlide.db_AdditionalCSSClass', 'Additional CSS class');
+
+		$labels['BackgroundImage'] = _t('OnePageSlide.has_many_BackgroundImage', 'Background Image');
+	}
+
+
 	/**
 	 * @todo: use fieldLabels() for field labels
 	 * @inheritdoc

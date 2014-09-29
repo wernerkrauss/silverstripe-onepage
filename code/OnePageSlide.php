@@ -51,7 +51,7 @@ class OnePageSlide extends DataExtension {
 	public function updateCMSFields(FieldList $fields) {
 		//@todo: use https://github.com/heyday/silverstripe-colorpalette for color fields w/ predefined colors
 
-		$image = UploadField::create('BackgroundImage','Background Image')
+		$image = UploadField::create('BackgroundImage',$this->owner->fieldLabel('BackgroundImage'))
 			->setAllowedFileCategories('image')
 			->setAllowedMaxFileNumber(1);
 		if ($this->owner->hasMethod('getRootFolderName')) {
@@ -63,7 +63,7 @@ class OnePageSlide extends DataExtension {
 			: Config::inst()->get($this->class, 'background_color_palette');
 		$backgroundColor = ColorPaletteField::create(
 			'BackgroundColor',
-			'Background Color',
+			$this->owner->fieldLabel('BackgroundColor'),
 			$backgroundPalette
 		);
 
@@ -72,7 +72,7 @@ class OnePageSlide extends DataExtension {
 			: Config::inst()->get($this->class, 'heading_color_palette');
 		$headingColor = ColorPaletteField::create(
 			'HeadingColor',
-			'Heading Color',
+			$this->owner->fieldLabel('HeadingColor'),
 			$headingPalette
 		);
 
@@ -81,7 +81,7 @@ class OnePageSlide extends DataExtension {
 			: Config::inst()->get($this->class, 'text_color_palette');
 		$textColor = ColorPaletteField::create(
 			'TextColor',
-			'Text Color',
+			$this->owner->fieldLabel('TextColor'),
 			$textPalette
 		);
 
@@ -89,7 +89,7 @@ class OnePageSlide extends DataExtension {
 		$fields->addFieldToTab('Root.Layout', $backgroundColor);
 		$fields->addFieldToTab('Root.Layout', $headingColor);
 		$fields->addFieldToTab('Root.Layout', $textColor);
-		$fields->addFieldToTab('Root.Layout', TextField::create('AdditionalCSSClass', 'CSS Class'));
+		$fields->addFieldToTab('Root.Layout', TextField::create('AdditionalCSSClass', $this->owner->fieldLabel('AdditionalCSSClass')));
 
 	}
 

@@ -70,11 +70,17 @@ $(function($){
 });
 ```
 
+##Contributing
+Feel free to file issues or submit pull requests.
+
+###Translating
+This module makes translates all strings via [Transifex](https://www.transifex.com/projects/p/silverstripe-onepage/).
+
 ##Todo
   * --scroll to slide (important!)-- see tip above
   * --redirect slide page to OnePageHolder#Slide--
   * --use separate templates for page types to include as slide--
-  * i18n
+  * --i18n--
   * create unit tests
   * use focuspoint module for background images
   * refactor and improve

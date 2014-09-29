@@ -1,0 +1,15 @@
+en:
+  OnePageHolder:
+    DESCRIPTION: 'Holder for OnePage Slides. Shows all child pages as one big page'
+    PLURALNAME: 'One Page Holders'
+    SINGULARNAME: 'One Page Holder'
+  OnePageSlide:
+    db_AdditionalCSSClass: 'Additional CSS class'
+    db_BackgroundColor: 'Background Color'
+    db_HeadingColor: 'Heading Color'
+    db_TextColor: 'Text Color'
+    db_Title: Title
+    has_many_BackgroundImage: 'Background Image'
+  SiteTree:
+    PLURALNAME: Pages
+    SINGULARNAME: Page

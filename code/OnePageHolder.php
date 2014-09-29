@@ -6,6 +6,8 @@ class OnePageHolder extends Page {
     
     private static $plural_name = 'One Page Holders';
 
+	private static $description = 'Holder for OnePage Slides. Shows all child pages as one big page';
+
     
     public function getCMSFields() {
 		$fields = parent::getCMSFields();

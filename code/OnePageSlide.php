@@ -85,12 +85,12 @@ class OnePageSlide extends DataExtension {
 			$textPalette
 		);
 
-		$fields->addFieldToTab('Root.Layout', $image);
-		$fields->addFieldToTab('Root.Layout', $backgroundColor);
-		$fields->addFieldToTab('Root.Layout', $headingColor);
-		$fields->addFieldToTab('Root.Layout', $textColor);
-		$fields->addFieldToTab('Root.Layout', TextField::create('AdditionalCSSClass', $this->owner->fieldLabel('AdditionalCSSClass')));
-
+		$layout = $fields->findOrMakeTab('Root.Layout',_t('OnePageSlide.TABLAYOUT', 'Layout'));
+		$layout->push($image);
+		$layout->push($backgroundColor);
+		$layout->push($headingColor);
+		$layout->push($textColor);
+		$layout->push(TextField::create('AdditionalCSSClass', $this->owner->fieldLabel('AdditionalCSSClass')));
 	}
 
 	//@todo: if Parent is a OnePageHolder modify $Link to show to $Parent->Link() / #$URLSegment

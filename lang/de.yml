@@ -4,6 +4,7 @@ de:
     PLURALNAME: 'OnePage - Seiten'
     SINGULARNAME: 'OnePage - Seite'
   OnePageSlide:
+    TABLAYOUT: Layout
     db_AdditionalCSSClass: 'Zusätzliche CSS Klasse'
     db_BackgroundColor: 'Hintergrundfarbe'
     db_HeadingColor: 'Farbe für Überschriften'

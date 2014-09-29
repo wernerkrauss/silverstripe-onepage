@@ -4,6 +4,7 @@ en:
     PLURALNAME: 'One Page Holders'
     SINGULARNAME: 'One Page Holder'
   OnePageSlide:
+    TABLAYOUT: Layout
     db_AdditionalCSSClass: 'Additional CSS class'
     db_BackgroundColor: 'Background Color'
     db_HeadingColor: 'Heading Color'

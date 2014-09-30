@@ -129,9 +129,16 @@ class OnePageSlide extends DataExtension {
 		}
 	}
 
-
+	/**
+	 * Udates RelativeLink()
+	 *
+	 * If no $action is given it changes /path/to/URLSegment into /path/to#URLSegment
+	 *
+	 * @param $base
+	 * @param $action
+	 */
 	public function updateRelativeLink(&$base, &$action){
-		if ($this->owner->isOnePageSlide()) {
+		if (!$action && $this->owner->isOnePageSlide()) {
 //			$base = $this->owner->Parent()->RelativeLink('#' . $this->owner->URLSegment); //e.g. /home/#urlsegment :(
 			$base = $this->owner->Parent()->RelativeLink($action) . '#' . $this->owner->URLSegment; // just /#urlsegment
 		}

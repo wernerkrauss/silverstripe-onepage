@@ -45,11 +45,9 @@ class OnePageSlide extends DataExtension {
 
 
 	/**
-	 * @todo: use fieldLabels() for field labels
 	 * @inheritdoc
 	 */
 	public function updateCMSFields(FieldList $fields) {
-		//@todo: use https://github.com/heyday/silverstripe-colorpalette for color fields w/ predefined colors
 
 		$image = UploadField::create('BackgroundImage',$this->owner->fieldLabel('BackgroundImage'))
 			->setAllowedFileCategories('image')

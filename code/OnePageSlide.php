@@ -121,10 +121,14 @@ class OnePageSlide extends DataExtension {
 	/**
 	 * get's fired on ContentController::init()
 	 *
-	 * check if this is a OnePageSlide and redirect to parent...
+	 * check if this is a OnePageSlide and redirect to parent if
+	 *  - controller has no action
+	 *  - request isn't an ajax request
 	 */
 	public function contentcontrollerInit(&$controller){
-		if ($this->owner->isOnePageSlide()) {
+		if ($this->owner->isOnePageSlide()
+				&& !$controller->urlParams['Action']
+				&& !Director::is_ajax()) {
 			$controller->redirect($this->owner->Parent()->Link('#'.$this->owner->URLSegment), 301);
 		}
 	}

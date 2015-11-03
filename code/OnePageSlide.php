@@ -27,6 +27,7 @@ class OnePageSlide extends DataExtension {
 		'#fff' => '#fff'
 	);
 
+
 	/**
 	 * @inheritdoc
 	 */
@@ -165,7 +166,9 @@ class OnePageSlide extends DataExtension {
 		$templateName = SSViewer::get_templates_by_class($this->owner->Classname, '_onepage', 'SiteTree')
 			?: 'Page_onepage';
 
-	    return $this->owner->renderWith($templateName);
+		$controller = ModelAsController::controller_for($this->owner);
+
+	    return $controller->renderWith($templateName);
 	}
 }
 

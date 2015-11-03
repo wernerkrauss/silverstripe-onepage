@@ -1,6 +1,6 @@
 {
 	"name": "wernerkrauss/silverstripe-onepage",
-	"description": "An extension for simpe one-page sites",
+	"description": "An extension for simple one-page sites",
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "extension"],
 	"license": "MIT",

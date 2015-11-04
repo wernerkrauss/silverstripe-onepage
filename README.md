@@ -29,6 +29,13 @@ Page:
   background_color_palette: {#fff: '#fff', #aacccc: '#aacccc', #ccaaaa: '#ccaaaa', #000: '#000'}
 ```
 
+You can limit the additional fields (colors and background images) in the layout tab to onepage slides only:
+ 
+```yml
+OnePageSlide:
+  use_only_on_onepage_slides: true
+```
+
 ##Usage
 ###Basic setup
 Define a page as page type "One Page Holder" and add some child pages.

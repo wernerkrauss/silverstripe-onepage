@@ -27,6 +27,8 @@ class OnePageSlide extends DataExtension {
 		'#fff' => '#fff'
 	);
 
+	private static $use_only_on_onepage_slides = false;
+
 
 	/**
 	 * @inheritdoc
@@ -49,6 +51,11 @@ class OnePageSlide extends DataExtension {
 	 * @inheritdoc
 	 */
 	public function updateCMSFields(FieldList $fields) {
+
+		if (Config::inst()->get($this->class, 'use_only_on_onepage_slides')
+			&& !$this->owner->isOnePageSlide()) {
+			return;
+		}
 
 		$image = UploadField::create('BackgroundImage',$this->owner->fieldLabel('BackgroundImage'))
 			->setAllowedFileCategories('image')

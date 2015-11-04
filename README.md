@@ -36,6 +36,13 @@ OnePageSlide:
   use_only_on_onepage_slides: true
 ```
 
+You can set empty defaults and switch off the need to choose colors by setting:
+
+```yml
+OnePageSlide:
+  colors_can_be_empty: true
+```
+
 ##Usage
 ###Basic setup
 Define a page as page type "One Page Holder" and add some child pages.

@@ -27,8 +27,17 @@ class OnePageSlide extends DataExtension {
 		'#fff' => '#fff'
 	);
 
+	/**
+	 * limit the generated form fields to slides (direct children of a OnePageHolder)
+	 * @var bool
+	 */
 	private static $use_only_on_onepage_slides = false;
 
+	/**
+	 * do not require colors to be set
+	 * @var bool
+	 */
+	private static $colors_can_be_empty = false;
 
 	/**
 	 * @inheritdoc
@@ -64,39 +73,38 @@ class OnePageSlide extends DataExtension {
 			$image->setFolderName($this->owner->getRootFolderName());
 		}
 
-		$backgroundPalette = $this->owner->config()->get('background_color_palette')
-			? $this->owner->config()->get('background_color_palette')
-			: Config::inst()->get($this->class, 'background_color_palette');
-		$backgroundColor = ColorPaletteField::create(
-			'BackgroundColor',
-			$this->owner->fieldLabel('BackgroundColor'),
-			$backgroundPalette
-		);
-
-		$headingPalette = $this->owner->config()->get('heading_color_palette')
-			? $this->owner->config()->get('heading_color_palette')
-			: Config::inst()->get($this->class, 'heading_color_palette');
-		$headingColor = ColorPaletteField::create(
-			'HeadingColor',
-			$this->owner->fieldLabel('HeadingColor'),
-			$headingPalette
-		);
-
-		$textPalette = $this->owner->config()->get('text_color_palette')
-			? $this->owner->config()->get('text_color_palette')
-			: Config::inst()->get($this->class, 'text_color_palette');
-		$textColor = ColorPaletteField::create(
-			'TextColor',
-			$this->owner->fieldLabel('TextColor'),
-			$textPalette
+		$colorFields = array(
+			'BackgroundColor' => 'background_color_palette',
+			'HeadingColor' => 'heading_color_palette',
+			'TextColor' => 'text_color_palette'
 		);
 
 		$layout = $fields->findOrMakeTab('Root.Layout',_t('OnePageSlide.TABLAYOUT', 'Layout'));
 		$layout->push($image);
-		$layout->push($backgroundColor);
-		$layout->push($headingColor);
-		$layout->push($textColor);
+
+		foreach ($colorFields as $fieldName => $palette) {
+			$layout->push($this->generateColorPalette($fieldName, $palette));
+		}
 		$layout->push(TextField::create('AdditionalCSSClass', $this->owner->fieldLabel('AdditionalCSSClass')));
+	}
+
+	protected function generateColorPalette($fieldName, $paletteSetting) {
+
+		$palette = $this->owner->config()->get($paletteSetting)
+			? $this->owner->config()->get($paletteSetting)
+			: Config::inst()->get($this->class, $paletteSetting);
+		
+		$field = ColorPaletteField::create(
+			$fieldName,
+			$this->owner->fieldLabel($fieldName),
+			$palette
+		);
+
+		if (Config::inst()->get($this->class, 'colors_can_be_empty')) {
+			$field= $field->setEmptyString('none');
+		}
+
+		return $field;
 	}
 
 	//@todo: if Parent is a OnePageHolder modify $Link to show to $Parent->Link() / #$URLSegment

@@ -54,6 +54,16 @@ In the tab "Layout" you can add all extra stuff like background image, colors or
 You can of course use any page type as a slide. Simply create an own template for inclusion as a slide and add the suffix "_onepage" to it's name. 
 See the included file [Page_onepage.ss](templates/Includes/Page_onepage.ss)
 
+If your page type supports multiple layouts (e.g. by a dropdown) you can add a function called `generateOnePageTemplateSuffix()` in your page like this:
+
+```
+	public function generateOnePageTemplateSuffix() {
+		return '_' . $this->Layout . '_onepage';
+	}
+```
+
+This way you can render the slide with a template called like "Page_layout1_onepage.ss"
+
 ##Tips
 ###Navigation and scrolling to slides
 Navigaton / scrolling to slides can be done e.g. using the [OnepageNav jQuery plugin](http://github.com/davist11/jQuery-One-Page-Nav) which is not bundled with this module.

@@ -26,7 +26,11 @@ You can define the colors for picking in your config.yml as key value pairs glob
 
 ```yml
 Page:
-  background_color_palette: {#fff: '#fff', #aacccc: '#aacccc', #ccaaaa: '#ccaaaa', #000: '#000'}
+  background_color_palette: 
+    - '#fff'
+    - '#aacccc'
+    - '#ccaaaa'
+    - '#000'
 ```
 
 You can limit the additional fields (colors and background images) in the layout tab to onepage slides only:

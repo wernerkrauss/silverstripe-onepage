@@ -14,17 +14,17 @@ class OnePageSlide extends DataExtension {
 	);
 
 	private static $background_color_palette = array(
-		'#fff' => '#fff',
-		'#444' => '#444',
-		'#000' => '#000'
+		'#fff',
+		'#444',
+		'#000'
 	);
 	private static $heading_color_palette = array(
-		'#000' => '#000',
-		'#fff' => '#fff'
+		'#000',
+		'#fff'
 	);
 	private static $text_color_palette = array(
-		'#000' => '#000',
-		'#fff' => '#fff'
+		'#000',
+		'#fff'
 	);
 
 	/**
@@ -97,7 +97,7 @@ class OnePageSlide extends DataExtension {
 		$field = ColorPaletteField::create(
 			$fieldName,
 			$this->owner->fieldLabel($fieldName),
-			$palette
+			ArrayLib::valuekey($palette)
 		);
 
 		if (Config::inst()->get($this->class, 'colors_can_be_empty')) {

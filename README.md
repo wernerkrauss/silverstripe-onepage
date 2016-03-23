@@ -1,5 +1,7 @@
 # Silverstripe One Page Module
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wernerkrauss/silverstripe-onepage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wernerkrauss/silverstripe-onepage/?branch=master)
+
 This module provides a basic skeleton to build one-page sites easily.
 
 By default it uses the [Stellar.js](http://markdalgleish.com/projects/stellar.js/) jQuery plugin but every other animation can be used in your templates

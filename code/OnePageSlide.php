@@ -159,7 +159,16 @@ class OnePageSlide extends DataExtension
      */
     public function updateRelativeLink(&$base, &$action)
     {
-        if (!$action && $this->owner->isOnePageSlide()) {
+        if ($action) {
+            return;
+        }
+
+        if($this->owner->isNestedOnePageSlide()) {
+            $base = $this->owner->Parent()->RelativeLink($action) . '-' . $this->owner->URLSegment;
+            return;
+        }
+
+        if ($this->owner->isOnePageSlide()) {
             //			$base = $this->owner->Parent()->RelativeLink('#' . $this->owner->URLSegment); //e.g. /home/#urlsegment :(
             $base = $this->owner->Parent()->RelativeLink($action) . '#' . $this->owner->URLSegment; // just /#urlsegment
         }
@@ -168,11 +177,23 @@ class OnePageSlide extends DataExtension
 
     /**
      * Checks, if the current page is a slide of a one-page by checking if the parent page is a OnePageHolder
+     *
      * @return bool
      */
     public function isOnePageSlide()
     {
         return ($this->owner->Parent() instanceof OnePageHolder);
+    }
+
+    /**
+     * Checks if the current page is a nested one-page slide
+     *
+     * @return bool
+     */
+    public function isNestedOnePageSlide() {
+        return $this->owner->ParentID
+            ? $this->owner->Parent()->isOnePageSlide()
+            : false;
     }
 
     /**

@@ -142,10 +142,23 @@ class OnePageSlide extends DataExtension
      */
     public function contentcontrollerInit(&$controller)
     {
+        if ($this->owner->isOnePageSlide() && $this->isCMSPreview()) {
+            //redirect and pass current ID by param, as anchor tags re not sent to the server
+            $url = Controller::join_links(
+                $this->owner->RelativeLink(),
+                '?EditPageID=' . $this->owner->ID,
+                '?Stage=' . Versioned::current_stage(),
+                '?CMSPreview=1'
+            );
+            $controller->redirect($url);
+        }
+
         if ($this->owner->isOnePageSlide()
                 && !$controller->urlParams['Action']
-                && !Director::is_ajax()) {
-            $controller->redirect($this->owner->Parent()->Link('#'.$this->owner->URLSegment), 301);
+                && !Director::is_ajax()
+                && !$this->isCMSPreview()
+            ) {
+            $controller->redirect($this->owner->RelativeLink(), 301);
         }
     }
 
@@ -159,9 +172,11 @@ class OnePageSlide extends DataExtension
      */
     public function updateRelativeLink(&$base, &$action)
     {
-        if ($action) {
+        //we need to call the redirection for cms preview
+        if (Controller::curr() instanceof LeftAndMain) {
             return;
         }
+
 
         if($this->owner->isNestedOnePageSlide()) {
             $base = $this->owner->Parent()->RelativeLink($action) . '-' . $this->owner->URLSegment;
@@ -170,7 +185,7 @@ class OnePageSlide extends DataExtension
 
         if ($this->owner->isOnePageSlide()) {
             //			$base = $this->owner->Parent()->RelativeLink('#' . $this->owner->URLSegment); //e.g. /home/#urlsegment :(
-            $base = $this->owner->Parent()->RelativeLink($action) . '#' . $this->owner->URLSegment; // just /#urlsegment
+            $base = Controller::join_links($this->owner->Parent()->RelativeLink($action), '#' . $this->owner->URLSegment); // just /#urlsegment
         }
     }
 
@@ -194,6 +209,18 @@ class OnePageSlide extends DataExtension
         return $this->owner->ParentID
             ? $this->owner->Parent()->isOnePageSlide()
             : false;
+    }
+
+    /**
+     * Helper to check if we're previewing the current page in CMS
+     *
+     * @return bool
+     */
+    public function isCMSPreview()
+    {
+        $isCMSPreview = Controller::curr()->getRequest()->getVar('CMSPreview');
+
+        return (bool) $isCMSPreview;
     }
 
     /**
@@ -228,4 +255,5 @@ class OnePageSlide extends DataExtension
             ? $this->owner->generateOnePageTemplateSuffix()
             : '_onepage';
     }
+
 }

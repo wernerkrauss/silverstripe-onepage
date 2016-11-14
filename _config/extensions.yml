@@ -9,3 +9,7 @@ After:
 Page:
  extensions:
     - 'OnePageSlide'
+
+OnePageHolder:
+  extensions:
+    - 'OnePageHolderExtension'

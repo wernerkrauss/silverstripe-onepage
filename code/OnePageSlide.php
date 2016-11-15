@@ -29,6 +29,13 @@ class OnePageSlide extends DataExtension
     );
 
     /**
+     * Should we modify the link to represent anchors?
+     *
+     * @var bool
+     */
+    private static $do_modify_link = true;
+
+    /**
      * limit the generated form fields to slides (direct children of a OnePageHolder)
      * @var bool
      */
@@ -162,8 +169,9 @@ class OnePageSlide extends DataExtension
         }
     }
 
+
     /**
-     * Udates RelativeLink()
+     * Updates RelativeLink()
      *
      * If no $action is given it changes /path/to/URLSegment into /path/to#URLSegment
      *
@@ -177,6 +185,9 @@ class OnePageSlide extends DataExtension
             return;
         }
 
+        if (Config::inst()->get('OnePageSlide', 'do_modify_link') == false) {
+            return;
+        }
 
         if($this->owner->isNestedOnePageSlide()) {
             $base = $this->owner->Parent()->RelativeLink($action) . '-' . $this->owner->URLSegment;
@@ -189,6 +200,20 @@ class OnePageSlide extends DataExtension
         }
     }
 
+    /**
+     * Helper to get a unmofified link if a slide should represent a classical page, not a "block" inside a OnePageHolder
+     *
+     * @param null $action
+     * @return mixed
+     */
+    public function UnmodifiedRelativeLink($action = null)
+    {
+        Config::inst()->update('OnePageSlide', 'do_modify_link', false);
+        $link = $this->owner->RelativeLink($action);
+        Config::inst()->update('OnePageSlide', 'do_modify_link', true);
+
+        return $link;
+    }
 
     /**
      * Checks, if the current page is a slide of a one-page by checking if the parent page is a OnePageHolder

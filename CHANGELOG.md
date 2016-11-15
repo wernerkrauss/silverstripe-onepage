@@ -4,9 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.1] - 2016-11-15
+### Added
+ - new method `UnmodifiedRelativeLink()` to retrieve a link that's not rewritten. Useful if a subpage should be a page on it's own.
+ - new config setting `OnePageSlide.do_modify_link`. Set to false to bypass link rewriting.
+
 ## [0.3.0] - 2016-11-14
 ### Added
- - Possibility to nest slides
+ - Possibility to nest slides.
  - Fixed bug when CMS was redirecting to the parent OnePageHolder in preview mode.
 
 ## [0.2.0] - 2015-12-11

@@ -100,11 +100,30 @@ $(function($){
 });
 ```
 
+##Showcases
+
+You can see the module in action on this sites:
+  - http://www.hallstattmarketing.at
+  - http://seerundlauf.hallstatt.net
+  - http://www.netwerkstatt.at
+  
+Feel free to add your project to this list.
+  
+##Alternatives
+There are many block modules for SilverStripe out there, e.g.
+
+  - https://github.com/bummzack/page-blocks/
+  - https://github.com/NobrainerWeb/Silverstripe-Content-Blocks
+  - https://github.com/Zauberfisch/silverstripe-page-builder
+
+
 ##Contributing
 Feel free to file issues or submit pull requests.
 
 ###Translating
 This module makes translates all strings via [Transifex](https://www.transifex.com/projects/p/silverstripe-onepage/).
+
+
 
 ##Todo
   * --scroll to slide (important!)-- see tip above

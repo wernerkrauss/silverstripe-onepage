@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Added
+ - Updated README with a list of showcases
+ - Updated README with a list of other block modules
+
 ## [0.3.1] - 2016-11-15
 ### Added
  - new method `UnmodifiedRelativeLink()` to retrieve a link that's not rewritten. Useful if a subpage should be a page on it's own.

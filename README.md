@@ -106,6 +106,7 @@ You can see the module in action on this sites:
   - http://www.hallstattmarketing.at
   - http://seerundlauf.hallstatt.net
   - http://www.netwerkstatt.at
+  - http://www.princess-filler.eu
   
 Feel free to add your project to this list.
   

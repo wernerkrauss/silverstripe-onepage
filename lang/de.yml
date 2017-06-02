@@ -1,16 +1,16 @@
 de:
-  OnePageHolder:
+  Netwerkstatt\Onepage\Extensions\OnePageSlide:
+    TABLAYOUT: Layout
+    db_AdditionalCSSClass: 'Zusätzliche CSS Klasse'
+    db_BackgroundColor: Hintergrundfarbe
+    db_HeadingColor: 'Farbe für Überschriften'
+    db_TextColor: Textfarbe
+    db_Title: Titel
+    has_many_BackgroundImage: Hintergrundbild
+  Netwerkstatt\Onepage\Pages\OnePageHolder:
     DESCRIPTION: 'Zeigt alle Unterseiten als eine große Seite an'
     PLURALNAME: 'OnePage - Seiten'
     SINGULARNAME: 'OnePage - Seite'
-  OnePageSlide:
-    TABLAYOUT: Layout
-    db_AdditionalCSSClass: 'Zusätzliche CSS Klasse'
-    db_BackgroundColor: 'Hintergrundfarbe'
-    db_HeadingColor: 'Farbe für Überschriften'
-    db_TextColor: 'Textfarbe'
-    db_Title: Titel
-    has_many_BackgroundImage: 'Hintergrundbild'
-  SiteTree:
+  SilverStripe\CMS\Model\SiteTree:
     PLURALNAME: Seiten
     SINGULARNAME: Seite

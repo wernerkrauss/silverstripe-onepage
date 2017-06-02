@@ -1,6 +1,3 @@
-<% require javascript('framework/thirdparty/jquery/jquery.js') %>
-<% require javascript('onepage/javascript/stellar/jquery.stellar.min.js') %>
-<% require javascript('onepage/javascript/onepage.js') %>
 <% require themedCSS('onepage','onepage') %>
 
 <div class="onepage content-container unit size4of4 lastUnit">

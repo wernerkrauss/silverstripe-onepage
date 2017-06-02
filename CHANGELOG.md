@@ -2,11 +2,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [0.4.0 - Unreleased]
+
+### Changed
+ - Updated code to be compatible with SilverStripe 4
 
 ### Added
  - Updated README with a list of showcases
  - Updated README with a list of other block modules
+
+### Removed
+ - Bundled Stellar.js and javascript
 
 ## [0.3.1] - 2016-11-15
 ### Added

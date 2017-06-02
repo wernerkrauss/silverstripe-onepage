@@ -1,5 +1,5 @@
 <% if $BackgroundImage %>
-    <div class="img-holder" data-stellar-background-ratio="0.5"
+    <div class="img-holder"
          style="background-image:url($BackgroundImage.URL);">
     </div>
 <% end_if %>

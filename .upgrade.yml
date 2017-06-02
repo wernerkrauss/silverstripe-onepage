@@ -1,0 +1,4 @@
+mappings:
+  OnePageHolderExtension: Netwerkstatt\Onepage\Extensions\OnePageHolderExtension
+  OnePageSlide: Netwerkstatt\Onepage\Extensions\OnePageSlide
+  OnePageHolder: Netwerkstatt\Onepage\Pages\OnePageHolder

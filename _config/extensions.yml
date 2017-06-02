@@ -2,14 +2,10 @@
 Name: onepage-extensions
 After:
   - 'framework/*'
-  - 'cms/*'
 ---
-# General
-
 Page:
- extensions:
-    - 'OnePageSlide'
-
-OnePageHolder:
   extensions:
-    - 'OnePageHolderExtension'
+    - Netwerkstatt\Onepage\Extensions\OnePageSlide
+Netwerkstatt\Onepage\Pages\OnePageHolder:
+  extensions:
+    - Netwerkstatt\Onepage\Extensions\OnePageHolderExtension

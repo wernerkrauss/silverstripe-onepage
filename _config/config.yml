@@ -2,8 +2,6 @@
 Name: onepage
 After:
   - 'framework/*'
-  - 'cms/*'
 ---
-
-OnePageSlide:
-  -excluded_page_type: FooPage #no function yet but for sure an interesting feature
+Netwerkstatt\Onepage\Extensions\OnePageSlide:
+  '-excluded_page_type': FooPage

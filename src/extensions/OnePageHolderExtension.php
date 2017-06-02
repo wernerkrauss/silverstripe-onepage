@@ -1,5 +1,12 @@
 <?php
 
+namespace Netwerkstatt\Onepage\Extensions;
+
+
+use SilverStripe\Control\Controller;
+use SilverStripe\Core\Extension;
+
+
 /**
  * Created by IntelliJ IDEA.
  * User: Werner
@@ -24,6 +31,5 @@ class OnePageHolderExtension extends Extension
             $tags = str_replace($origIDTag, $newIDTag, $tags);
             $tags = str_replace($origEditLinkTag, $newEditLinkTag, $tags);
         }
-
     }
 }

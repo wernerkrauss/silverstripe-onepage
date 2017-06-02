@@ -16,11 +16,16 @@
 		"issues": "https://github.com/wernerkrauss/silverstripe-onepage/issues"
 	},
 	"require": {
-		"silverstripe/framework": "3.*",
-		"silverstripe/cms": "3.*",
+		"silverstripe/framework": "^4.0",
+		"silverstripe/cms": "^4.0",
 		"composer/installers": "*",
         "heyday/silverstripe-colorpalette": "dev-master"
 	},
+    "autoload": {
+        "psr-4": {
+            "Netwerkstatt\\Onepage\\": "src/"
+        }
+    },
 	"suggest": {
         "wernerkrauss/folderperpage": "create folders for each page"
 	},

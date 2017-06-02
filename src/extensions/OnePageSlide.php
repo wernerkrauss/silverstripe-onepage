@@ -1,32 +1,53 @@
 <?php
 
+namespace Netwerkstatt\Onepage\Extensions;
+
+
+use Heyday\ColorPalette\Fields\ColorPaletteField;
+use Netwerkstatt\Onepage\Pages\OnePageHolder;
+use SilverStripe\Admin\LeftAndMain;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Assets\Image;
+use SilverStripe\CMS\Controllers\ModelAsController;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextField;
+use SilverStripe\ORM\ArrayLib;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Versioned\Versioned;
+use SilverStripe\View\SSViewer;
+
+
 class OnePageSlide extends DataExtension
 {
 
-    private static $db = array(
+    private static $db = [
         'BackgroundColor' => 'Varchar',
         'HeadingColor' => 'Varchar',
         'TextColor' => 'Varchar',
         'AdditionalCSSClass' => 'Varchar'
-    );
+    ];
 
-    private static $has_one = array(
-        'BackgroundImage' => 'Image'
-    );
+    private static $has_one = [
+        'BackgroundImage' => Image::class
+    ];
 
-    private static $background_color_palette = array(
+    private static $background_color_palette = [
         '#fff',
         '#444',
         '#000'
-    );
-    private static $heading_color_palette = array(
+    ];
+    private static $heading_color_palette = [
         '#000',
         '#fff'
-    );
-    private static $text_color_palette = array(
+    ];
+    private static $text_color_palette = [
         '#000',
         '#fff'
-    );
+    ];
 
     /**
      * Should we modify the link to represent anchors?
@@ -70,7 +91,8 @@ class OnePageSlide extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
         if (Config::inst()->get($this->class, 'use_only_on_onepage_slides')
-            && !$this->owner->isOnePageSlide()) {
+            && !$this->owner->isOnePageSlide()
+        ) {
             return;
         }
 
@@ -81,11 +103,11 @@ class OnePageSlide extends DataExtension
             $image->setFolderName($this->owner->getRootFolderName());
         }
 
-        $colorFields = array(
+        $colorFields = [
             'BackgroundColor' => 'background_color_palette',
             'HeadingColor' => 'heading_color_palette',
             'TextColor' => 'text_color_palette'
-        );
+        ];
 
         $layout = $fields->findOrMakeTab('Root.Layout', _t('OnePageSlide.TABLAYOUT', 'Layout'));
         $layout->push($image);
@@ -109,7 +131,7 @@ class OnePageSlide extends DataExtension
         );
 
         if (Config::inst()->get($this->class, 'colors_can_be_empty')) {
-            $field= $field->setEmptyString('none');
+            $field = $field->setEmptyString('none');
         }
 
         return $field;
@@ -132,7 +154,7 @@ class OnePageSlide extends DataExtension
             : '';
 
         $style .= $this->owner->TextColor
-            ? ' color: ' . $this->owner->TextColor. ' !important; '
+            ? ' color: ' . $this->owner->TextColor . ' !important; '
             : '';
 
         $this->owner->extend('updateOnePageSlideStyle', $style);
@@ -161,10 +183,10 @@ class OnePageSlide extends DataExtension
         }
 
         if ($this->owner->isOnePageSlide()
-                && !$controller->urlParams['Action']
-                && !Director::is_ajax()
-                && !$this->isCMSPreview()
-            ) {
+            && !$controller->urlParams['Action']
+            && !Director::is_ajax()
+            && !$this->isCMSPreview()
+        ) {
             $controller->redirect($this->owner->RelativeLink(), 301);
         }
     }
@@ -185,18 +207,19 @@ class OnePageSlide extends DataExtension
             return;
         }
 
-        if (Config::inst()->get('OnePageSlide', 'do_modify_link') == false) {
+        if (Config::inst()->get(OnePageSlide::class, 'do_modify_link') == false) {
             return;
         }
 
-        if($this->owner->isNestedOnePageSlide()) {
+        if ($this->owner->isNestedOnePageSlide()) {
             $base = $this->owner->Parent()->RelativeLink($action) . '-' . $this->owner->URLSegment;
             return;
         }
 
         if ($this->owner->isOnePageSlide()) {
             //			$base = $this->owner->Parent()->RelativeLink('#' . $this->owner->URLSegment); //e.g. /home/#urlsegment :(
-            $base = Controller::join_links($this->owner->Parent()->RelativeLink($action), '#' . $this->owner->URLSegment); // just /#urlsegment
+            $base = Controller::join_links($this->owner->Parent()->RelativeLink($action),
+                '#' . $this->owner->URLSegment); // just /#urlsegment
         }
     }
 
@@ -208,9 +231,9 @@ class OnePageSlide extends DataExtension
      */
     public function UnmodifiedRelativeLink($action = null)
     {
-        Config::inst()->update('OnePageSlide', 'do_modify_link', false);
+        Config::inst()->update(OnePageSlide::class, 'do_modify_link', false);
         $link = $this->owner->RelativeLink($action);
-        Config::inst()->update('OnePageSlide', 'do_modify_link', true);
+        Config::inst()->update(OnePageSlide::class, 'do_modify_link', true);
 
         return $link;
     }
@@ -230,7 +253,8 @@ class OnePageSlide extends DataExtension
      *
      * @return bool
      */
-    public function isNestedOnePageSlide() {
+    public function isNestedOnePageSlide()
+    {
         return $this->owner->ParentID
             ? $this->owner->Parent()->isOnePageSlide()
             : false;
@@ -245,7 +269,7 @@ class OnePageSlide extends DataExtension
     {
         $isCMSPreview = Controller::curr()->getRequest()->getVar('CMSPreview');
 
-        return (bool) $isCMSPreview;
+        return (bool)$isCMSPreview;
     }
 
     /**
@@ -258,7 +282,8 @@ class OnePageSlide extends DataExtension
      */
     public function getOnePageContent()
     {
-        $templateName = SSViewer::get_templates_by_class($this->owner->Classname, $this->getOnePageTemplateSuffix(), 'SiteTree')
+        $templateName = SSViewer::get_templates_by_class($this->owner->Classname, $this->getOnePageTemplateSuffix(),
+            SiteTree::class)
             ?: 'Page_onepage';
 
         $controller = ModelAsController::controller_for($this->owner);

@@ -280,13 +280,19 @@ class OnePageSlide extends DataExtension
      */
     public function getOnePageContent()
     {
-        $templateName = SSViewer::get_templates_by_class($this->owner->Classname, $this->getOnePageTemplateSuffix(),
+        $templateNames = SSViewer::get_templates_by_class($this->owner->Classname, $this->getOnePageTemplateSuffix(),
             SiteTree::class)
-            ?: 'Page_onepage';
+            ?: ['Page_onepage', 'type' => 'Layout'];
+
+        foreach ($templateNames as $templateName) {
+            if (!is_array($templateName)) {
+                $templateNames[] = [$templateName, 'type' => 'Layout'];
+            }
+        }
 
         $controller = ModelAsController::controller_for($this->owner);
 
-        return $controller->renderWith($templateName);
+        return $controller->renderWith($templateNames);
     }
 
 

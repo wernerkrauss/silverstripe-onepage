@@ -2,9 +2,9 @@
 
 namespace Netwerkstatt\Onepage\Extensions;
 
-
 use Heyday\ColorPalette\Fields\ColorPaletteField;
 use Netwerkstatt\Onepage\Pages\OnePageHolder;
+use Page;
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
@@ -20,10 +20,8 @@ use SilverStripe\ORM\DataExtension;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\SSViewer;
 
-
 class OnePageSlide extends DataExtension
 {
-
     private static $db = [
         'BackgroundColor' => 'Varchar',
         'HeadingColor' => 'Varchar',
@@ -33,6 +31,10 @@ class OnePageSlide extends DataExtension
 
     private static $has_one = [
         'BackgroundImage' => Image::class
+    ];
+
+    private static $owns = [
+        'BackgroundImage'
     ];
 
     private static $background_color_palette = [
@@ -90,7 +92,7 @@ class OnePageSlide extends DataExtension
      */
     public function updateCMSFields(FieldList $fields)
     {
-        if (Config::inst()->get($this->class, 'use_only_on_onepage_slides')
+        if (Config::inst()->get(OnePageSlide::class, 'use_only_on_onepage_slides')
             && !$this->owner->isOnePageSlide()
         ) {
             return;
@@ -121,7 +123,7 @@ class OnePageSlide extends DataExtension
     {
         $palette = $this->owner->config()->get($paletteSetting)
             ? $this->owner->config()->get($paletteSetting)
-            : Config::inst()->get($this->class, $paletteSetting);
+            : Config::inst()->get(OnePageSlide::class, $paletteSetting);
 
         $field = ColorPaletteField::create(
             $fieldName,
@@ -129,7 +131,7 @@ class OnePageSlide extends DataExtension
             ArrayLib::valuekey($palette)
         );
 
-        if (Config::inst()->get($this->class, 'colors_can_be_empty')) {
+        if (Config::inst()->get(OnePageSlide::class, 'colors_can_be_empty')) {
             $field = $field->setEmptyString('none');
         }
 
@@ -217,8 +219,10 @@ class OnePageSlide extends DataExtension
 
         if ($this->owner->isOnePageSlide()) {
             //			$base = $this->owner->Parent()->RelativeLink('#' . $this->owner->URLSegment); //e.g. /home/#urlsegment :(
-            $base = Controller::join_links($this->owner->Parent()->RelativeLink($action),
-                '#' . $this->owner->URLSegment); // just /#urlsegment
+            $base = Controller::join_links(
+                $this->owner->Parent()->RelativeLink($action),
+                '#' . $this->owner->URLSegment
+            ); // just /#urlsegment
         }
     }
 
@@ -254,7 +258,7 @@ class OnePageSlide extends DataExtension
      */
     public function isNestedOnePageSlide()
     {
-        return $this->owner->ParentID
+        return $this->owner->ParentID && $this->owner->Parent instanceof Page
             ? $this->owner->Parent()->isOnePageSlide()
             : false;
     }
@@ -280,8 +284,11 @@ class OnePageSlide extends DataExtension
      */
     public function getOnePageContent()
     {
-        $templateNames = SSViewer::get_templates_by_class($this->owner->Classname, $this->getOnePageTemplateSuffix(),
-            SiteTree::class)
+        $templateNames = SSViewer::get_templates_by_class(
+            $this->owner->Classname,
+            $this->getOnePageTemplateSuffix(),
+            SiteTree::class
+        )
             ?: ['Page_onepage', 'type' => 'Layout'];
 
         foreach ($templateNames as $templateName) {
@@ -309,5 +316,4 @@ class OnePageSlide extends DataExtension
             ? $this->owner->generateOnePageTemplateSuffix()
             : '_onepage';
     }
-
 }

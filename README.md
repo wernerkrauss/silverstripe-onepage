@@ -4,8 +4,6 @@
 
 This module provides a basic skeleton to build one-page sites easily.
 
-By default it uses the [Stellar.js](http://markdalgleish.com/projects/stellar.js/) jQuery plugin but every other animation can be used in your templates
-
 ## Installation
 Best installed via composer. You may clone the repo or download the zip, however you should find a directory called "onepage" with all files in your silverstripe root folder.
 
@@ -41,14 +39,14 @@ Page:
 You can limit the additional fields (colors and background images) in the layout tab to onepage slides only:
  
 ```yml
-OnePageSlide:
+Netwerkstatt\Onepage\Extensions\OnePageSlide:
   use_only_on_onepage_slides: true
 ```
 
 You can set empty defaults and switch off the need to choose colors by setting:
 
 ```yml
-OnePageSlide:
+Netwerkstatt\Onepage\Extensions\OnePageSlide:
   colors_can_be_empty: true
 ```
 
@@ -114,11 +112,7 @@ You can see the module in action on this sites:
 Feel free to add your project to this list.
   
 ## Alternatives
-There are many block modules for SilverStripe out there, e.g.
-
-  - https://github.com/bummzack/page-blocks/
-  - https://github.com/NobrainerWeb/Silverstripe-Content-Blocks
-  - https://github.com/Zauberfisch/silverstripe-page-builder
+There are some block builder modules for SilverStripe out there. The default module for SilverStripe 4 is [Elemental](https://github.com/dnadesign/silverstripe-elemental).
 
 
 ## Contributing

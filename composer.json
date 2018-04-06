@@ -1,7 +1,7 @@
 {
 	"name": "wernerkrauss/silverstripe-onepage",
 	"description": "An extension for simple one-page sites",
-	"type": "silverstripe-module",
+	"type": "silverstripe-vendormodule",
 	"keywords": ["silverstripe", "extension"],
 	"license": "MIT",
 	"authors": [
@@ -17,9 +17,7 @@
 	},
 	"require": {
 		"silverstripe/framework": "^4.0",
-		"silverstripe/cms": "^4.0",
-		"composer/installers": "*",
-        "heyday/silverstripe-colorpalette": "dev-master"
+        "heyday/silverstripe-colorpalette": "^2.0.0"
 	},
     "autoload": {
         "psr-4": {
@@ -30,6 +28,9 @@
         "wernerkrauss/folderperpage": "create folders for each page"
 	},
 	"extra": {
-		"installer-name": "onepage"
+		"installer-name": "onepage",
+        "expose": [
+            "css"
+        ]
 	}
 }

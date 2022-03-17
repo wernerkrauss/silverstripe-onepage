@@ -204,7 +204,7 @@ class OnePageSlide extends DataExtension
     public function updateRelativeLink(&$base, &$action)
     {
         //we need to call the redirection for cms preview
-        if (Controller::curr() instanceof LeftAndMain) {
+        if (Controller::has_curr() && Controller::curr() instanceof LeftAndMain) {
             return;
         }
 
